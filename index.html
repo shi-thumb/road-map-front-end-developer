@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadmap Jadi Front-End Developer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .roadmap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .step {
+            background: white;
+            padding: 15px;
+            margin: 10px;
+            border-left: 5px solid #007BFF;
+            width: 60%;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            cursor: pointer;
+        }
+        .step h2 {
+            margin: 0;
+            color: #007BFF;
+        }
+        .step p {
+            margin: 5px 0 0;
+            color: #555;
+        }
+        .step.completed {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Roadmap Jadi Front-End Developer</h1>
+        <div class="roadmap">
+            <div class="step" onclick="toggleStep(this)" data-step="1">
+                <h2>1. HTML & CSS</h2>
+                <p>Pelajari dasar-dasar HTML dan CSS untuk membangun struktur dan tampilan website.</p>
+            </div>
+            <div class="step" onclick="toggleStep(this)" data-step="2">
+                <h2>2. Responsive Design</h2>
+                <p>Pelajari Flexbox, Grid, dan media queries untuk membuat tampilan yang responsif.</p>
+            </div>
+            <div class="step" onclick="toggleStep(this)" data-step="3">
+                <h2>3. JavaScript Dasar</h2>
+                <p>Pelajari variabel, fungsi, DOM Manipulation, dan event handling.</p>
+            </div>
+            <div class="step" onclick="toggleStep(this)" data-step="4">
+                <h2>4. JavaScript Lanjutan</h2>
+                <p>Pelajari ES6+, asynchronous JavaScript (Promises, Async/Await), dan API fetching.</p>
+            </div>
+            <div class="step" onclick="toggleStep(this)" data-step="5">
+                <h2>5. Framework & Library</h2>
+                <p>Pelajari React atau Vue untuk membangun aplikasi yang lebih dinamis.</p>
+            </div>
+            <div class="step" onclick="toggleStep(this)" data-step="6">
+                <h2>6. Version Control</h2>
+                <p>Pelajari Git dan GitHub untuk mengelola kode secara profesional.</p>
+            </div>
+            <div class="step" onclick="toggleStep(this)" data-step="7">
+                <h2>7. Deployment</h2>
+                <p>Pelajari cara deploy proyek ke Netlify, Vercel, atau GitHub Pages.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let steps = document.querySelectorAll(".step");
+            steps.forEach(step => {
+                let stepId = step.getAttribute("data-step");
+                if (localStorage.getItem("step-" + stepId) === "completed") {
+                    step.classList.add("completed");
+                }
+            });
+        });
+
+        function toggleStep(element) {
+            let stepId = element.getAttribute("data-step");
+            element.classList.toggle("completed");
+            if (element.classList.contains("completed")) {
+                localStorage.setItem("step-" + stepId, "completed");
+            } else {
+                localStorage.removeItem("step-" + stepId);
+            }
+        }
+    </script>
+</body>
+</html>
